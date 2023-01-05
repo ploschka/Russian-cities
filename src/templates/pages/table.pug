@@ -1,0 +1,179 @@
+doctype html
+html
+    head
+        title Таблица
+        link(rel="stylesheet", )
+    body
+        h1 Список городов
+        details
+            summary Меню
+            ul
+                li
+                    a(href="index.html", ) Главная страница
+        hr
+        details
+            summary График
+            form(method="GET")
+                table
+                    tr
+                        th Значение по оси X
+                        th Результат
+                    tr
+                        td
+                            input(type="radio", name="radio")
+                            | Субъект Федерации
+                        td
+                            input(type="checkbox", )
+                            | Население
+                    tr
+                        td
+                            input(type="radio", name="radio")
+                            | Год основания
+                        td
+                            input(type="checkbox", )
+                            | Плотность
+                input(type="submit", value="Построить", )
+        details
+            summary Фильтры
+            form(method="GET")
+                ul
+                    li Название: 
+                        input(type="text", )
+                    li Субъект Федерации: 
+                        input(type="text", )
+                    li Год основания: 
+                        input(type="text", )
+                    li Население от: 
+                        input(type="text", )
+                        | до:
+                        input(type="text", )
+                    li Плотность от: 
+                        input(type="text", )
+                        | до:
+                        input(type="text", )
+        details
+            summary Сортировка
+            ul
+                li Первый уровень
+                    select()
+                        option(value="0") Нет
+                        option(value="1") Название
+                        option(value="2") Субъект Федерации
+                        option(value="3") Год основания
+                        option(value="4") Население
+                        option(value="5") Плотность
+                    input(type="checkbox", )
+                    | По убыванию
+                li Второй уровень
+                    select()
+                        option(value="0") Нет
+                        option(value="1") Название
+                        option(value="2") Субъект Федерации
+                        option(value="3") Год основания
+                        option(value="4") Население
+                        option(value="5") Плотность
+                    input(type="checkbox", )
+                    | По убыванию
+                li Третий уровень
+                    select()
+                        option(value="0") Нет
+                        option(value="1") Название
+                        option(value="2") Субъект Федерации
+                        option(value="3") Год основания
+                        option(value="4") Население
+                        option(value="5") Плотность
+                    input(type="checkbox")
+                    | По убыванию
+            input(type="submit", value="Отсортировать", )
+        hr
+        table
+            tr
+                th Название
+                th Субъект Федерации
+                th Год основания
+                th Население (чел.)
+                th Плотность (чел./км²)
+            tr
+                td Москва
+                td Москва
+                td 1147
+                td 13010112
+                td 5079,1
+            tr
+                td Санкт-Петербург
+                td Санкт-Петербург
+                td 1703
+                td 5601911
+                td 3992,81
+            tr
+                td Саратов
+                td Саратовская область
+                td 1590
+                td 901361
+                td 1074,84
+            tr
+                td Хабаровск
+                td Хабаровский край
+                td 1858
+                td 617441
+                td 1599,59
+            tr
+                td Сызрань
+                td Самарская область
+                td 1683
+                td 165725
+                td 1416,45
+            tr
+                td Челябинск
+                td Челябинская область
+                td 1736
+                td 1189525
+                td 2371,6
+            tr
+                td Новосибирск
+                td Новосибирская область
+                td 1893
+                td 1633595
+                td 3230,87
+            tr
+                td Екатеринбург
+                td Свердловская область
+                td 1723
+                td 1544376
+                td 1389,2
+            tr
+                td Казань
+                td Республика Татарстан
+                td 1005
+                td 1308660
+                td 2221,89
+            tr
+                td Нижний Новгород
+                td Нижегородская область
+                td 1221
+                td 1249861
+                td 3043,39
+            tr
+                td Ростов-на-Дону
+                td Ростовская область
+                td 1749
+                td 1142162
+                td 3277,37
+            tr
+                td Воронеж
+                td Воронежская область
+                td 1586
+                td 1057681
+                td 1767,84
+            tr
+                td Сочи
+                td Краснодарский край
+                td 1838
+                td 466078
+                td 2636,64
+            tr
+                td Симферополь
+                td Республика Крым
+                td 1784
+                td 340540
+                td 3170,47
