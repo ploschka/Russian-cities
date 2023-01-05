@@ -7,17 +7,25 @@ if (!Encore.isRuntimeEnvironmentConfigured())
 }
 
 Encore
-    .setOutputPath('dist/build/')
+    .setOutputPath('public/build/')
     .setPublicPath('/build/')
     .addEntry('index', './src/templates/pages/index.pug')
     .addEntry('table', './src/templates/pages/table.pug')
     .addEntry('moscow', './src/templates/pages/moscow.pug')
-    .splitEntryChunks()
+    // .splitEntryChunks()
     .cleanupOutputBeforeBuild()
+    .configureBabel((config) => {
+        config.plugins.push('@babel/plugin-proposal-class-properties');
+    })
+    .configureBabelPresetEnv((config) => {
+        config.useBuiltIns = 'usage';
+        config.corejs = 3;
+    })
     .enableSingleRuntimeChunk()
-    .enableSassLoader()
+    // .enableSassLoader()
     .addPlugin(new PugPlugin())
     .addLoader({test: /\.pug/, loader: PugPlugin.loader})
+    .addLoader({test: /\.(css|sass|scss)$/, use: ['css-loader', 'sass-loader']})
 ;
 
 module.exports = Encore.getWebpackConfig();
