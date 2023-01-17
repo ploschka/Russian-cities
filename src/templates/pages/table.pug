@@ -7,175 +7,110 @@ block stylesheets
     link(rel="stylesheet", href=require(pathToStyles + 'table.scss'))
 block content
     h1 Список городов
-    details
-        summary Меню
-        ul
-            li
-                a(href="/", ) Главная страница
-    hr
-    details
-        summary График
-        form(method="GET")
-            table
+    -
+        let array = [
+            {name: "Москва",            subject: "Москва",                  year: "1147",   count: "13010112",  density: "5079,1"},
+            {name: "Санкт-Петербург",   subject: "Санкт-Петербург",         year: "1703",   count: "5601911",   density: "3992,81"},
+            {name: "Саратов",           subject: "Саратовская область",     year: "1590",   count: "901361",    density: "1074,84"},
+            {name: "Хабаровск",         subject: "Хабаровский край",        year: "1858",   count: "617441",    density: "1599,59"},
+            {name: "Сызрань",           subject: "Самарская область",       year: "1683",   count: "165725",    density: "1416,45"},
+            {name: "Челябинск",         subject: "Челябинская область",     year: "1736",   count: "1189525",   density: "2371,6"},
+            {name: "Новосибирск",       subject: "Новосибирская область",   year: "1893",   count: "1633595",   density: "3230,87"},
+            {name: "Екатеринбург",      subject: "Свердловская область",    year: "1723",   count: "1544376",   density: "1389,2"},
+            {name: "Казань",            subject: "Республика Татарстан",    year: "1005",   count: "1308660",   density: "2221,89"},
+            {name: "Нижний Новгород",   subject: "Нижегородская область",   year: "1221",   count: "1249861",   density: "3043,39"},
+            {name: "Ростов-на-Дону",    subject: "Ростовская область",      year: "1749",   count: "1142162",   density: "3277,37"},
+            {name: "Воронеж",           subject: "Воронежская область",     year: "1586",   count: "1057681",   density: "1767,84"},
+            {name: "Сочи",              subject: "Краснодарский край",      year: "1838",   count: "466078",    density: "2636,64"},
+            {name: "Симферополь",       subject: "Республика Крым",         year: "1784",   count: "340540",    density: "3170,47"},
+        ];
+
+        let options = [
+            "Нет",
+            "Название",
+            "Субъект Федерации",
+            "Год основания",
+            "Население",
+            "Плотность",
+        ];
+    
+    .tableandoptions
+        .options
+            .option
+                .text График
+                form
+                    .graphoptions
+                        .label Значение по оси X
+                        .row
+                            input#subject(type="radio", name="radio")
+                            label(for="subject") Субъект Федерации
+
+                        .row
+                            input#year(type="radio", name="radio")
+                            label(for="year") Год основания
+                        .label Результат
+                        .row
+                            input#population(type="checkbox")
+                            label(for="population") Население
+
+                        .row
+                            input#density(type="checkbox")
+                            label(for="density") Плотность                                
+                    input(type="submit", value="Построить")
+            .option
+                .text Поиск
+                form
+                    ul
+                        li.element Название: 
+                            input.widefield(type="text")
+                        li.element Субъект Федерации: 
+                            input.widefield(type="text")
+                        li.element Год основания: 
+                            input.shortfield(type="number")
+                        li.element Население
+                            br
+                            | от: 
+                            input.shortfield(type="number")
+                            | до:
+                            input.shortfield(type="number")
+                        li.element Плотность
+                            br
+                            | от: 
+                            input.shortfield(type="number")
+                            | до:
+                            input.shortfield(type="number")
+            .option 
+                .text Сортировка
+                ul
+                    - levels = ["first", "second", "third"];
+                    each level, index in ["Первый", "Второй", "Третий"]
+                        li.element #{level} уровень
+                            select.widefield
+                                each opt, index in options
+                                    option(value=index)= opt
+                            br
+                            input(type="checkbox", id=levels[index])
+                            label(for=levels[index])  По убыванию
+
+        table.datatable
+            thead
                 tr
-                    th Значение по оси X
-                    th Результат
-                tr
-                    td
-                        input(type="radio", name="radio")
-                        | Субъект Федерации
-                    td
-                        input(type="checkbox", )
-                        | Население
-                tr
-                    td
-                        input(type="radio", name="radio")
-                        | Год основания
-                    td
-                        input(type="checkbox", )
-                        | Плотность
-            input(type="submit", value="Построить", )
-    details
-        summary Фильтры
-        form(method="GET")
-            ul
-                li Название: 
-                    input(type="text", )
-                li Субъект Федерации: 
-                    input(type="text", )
-                li Год основания: 
-                    input(type="text", )
-                li Население от: 
-                    input(type="text", )
-                    | до:
-                    input(type="text", )
-                li Плотность от: 
-                    input(type="text", )
-                    | до:
-                    input(type="text", )
-    details
-        summary Сортировка
-        ul
-            li Первый уровень
-                select()
-                    option(value="0") Нет
-                    option(value="1") Название
-                    option(value="2") Субъект Федерации
-                    option(value="3") Год основания
-                    option(value="4") Население
-                    option(value="5") Плотность
-                input(type="checkbox", )
-                | По убыванию
-            li Второй уровень
-                select()
-                    option(value="0") Нет
-                    option(value="1") Название
-                    option(value="2") Субъект Федерации
-                    option(value="3") Год основания
-                    option(value="4") Население
-                    option(value="5") Плотность
-                input(type="checkbox", )
-                | По убыванию
-            li Третий уровень
-                select()
-                    option(value="0") Нет
-                    option(value="1") Название
-                    option(value="2") Субъект Федерации
-                    option(value="3") Год основания
-                    option(value="4") Население
-                    option(value="5") Плотность
-                input(type="checkbox")
-                | По убыванию
-        input(type="submit", value="Отсортировать", )
-    hr
-    table
-        tr
-            th Название
-            th Субъект Федерации
-            th Год основания
-            th Население (чел.)
-            th Плотность (чел./км²)
-        tr
-            td Москва
-            td Москва
-            td 1147
-            td 13010112
-            td 5079,1
-        tr
-            td Санкт-Петербург
-            td Санкт-Петербург
-            td 1703
-            td 5601911
-            td 3992,81
-        tr
-            td Саратов
-            td Саратовская область
-            td 1590
-            td 901361
-            td 1074,84
-        tr
-            td Хабаровск
-            td Хабаровский край
-            td 1858
-            td 617441
-            td 1599,59
-        tr
-            td Сызрань
-            td Самарская область
-            td 1683
-            td 165725
-            td 1416,45
-        tr
-            td Челябинск
-            td Челябинская область
-            td 1736
-            td 1189525
-            td 2371,6
-        tr
-            td Новосибирск
-            td Новосибирская область
-            td 1893
-            td 1633595
-            td 3230,87
-        tr
-            td Екатеринбург
-            td Свердловская область
-            td 1723
-            td 1544376
-            td 1389,2
-        tr
-            td Казань
-            td Республика Татарстан
-            td 1005
-            td 1308660
-            td 2221,89
-        tr
-            td Нижний Новгород
-            td Нижегородская область
-            td 1221
-            td 1249861
-            td 3043,39
-        tr
-            td Ростов-на-Дону
-            td Ростовская область
-            td 1749
-            td 1142162
-            td 3277,37
-        tr
-            td Воронеж
-            td Воронежская область
-            td 1586
-            td 1057681
-            td 1767,84
-        tr
-            td Сочи
-            td Краснодарский край
-            td 1838
-            td 466078
-            td 2636,64
-        tr
-            td Симферополь
-            td Республика Крым
-            td 1784
-            td 340540
-            td 3170,47
+                    th Название
+                    th Субъект Федерации
+                    th Год основания
+                    th Население (чел.)
+                    th Плотность (чел./км²)
+            tbody
+                - let cls = "";
+                each val, index in array
+                    if index % 2 == 0
+                        - cls = "odd";
+                    else
+                        - cls = "even";
+
+                    tr(class=cls)
+                        td= val.name
+                        td= val.subject
+                        td= val.year
+                        td= val.count
+                        td= val.density          

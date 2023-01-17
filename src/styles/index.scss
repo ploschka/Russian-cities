@@ -1,0 +1,55 @@
+$cardsize: 35vw;
+$mincardsize: 400px;
+$maxcardsize: 500px;
+
+$imgsize: 30vw;
+$minimgsize: 300px;
+$maximgsize: 400px;
+
+h1
+{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.gallery
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .city-card
+    {
+        padding: 20px;
+        width: 35vw;
+        height: 35vw;
+        max-width: 360px;
+        max-height: 360px;
+        min-width: 250px;
+        min-height: 250px;
+        .title
+        {
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        .img
+        {
+            width: 90%;
+            height: 90%;
+            margin: auto;
+            transition: 0.5s;
+            img
+            {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &:hover
+        {
+            .img
+            {
+                width: 95%;
+                height: 95%;
+            }
+        }
+    }
+}

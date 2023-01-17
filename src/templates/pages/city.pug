@@ -1,0 +1,12 @@
+extends ../base.pug
+
+block stylesheets
+    link(rel="stylesheet", href=require(pathToStyles + 'city.scss'))
+    
+block content
+    h1.header
+        block header
+    .img
+        block image
+    .text
+        block text

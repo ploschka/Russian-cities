@@ -1,0 +1,146 @@
+@function brdr()
+{
+    @return solid 2px black;
+}
+
+@function clr($n)
+{
+    @return rgba(0, 0, 0, 0.01 * $n)
+}
+
+@function clrdark($n)
+{
+    @return rgba(0, 0, 0, 0.02 * $n)
+}
+
+.tableandoptions
+{
+    display: flex;
+    justify-content: center;
+}
+
+.options
+{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    .option
+    {
+        display: flex;
+        flex-direction: column;
+        margin: 5px;
+        .element
+        {
+            margin: 5px;
+        }
+        .text
+        {
+            font-weight: bold;
+        }
+        .shortfield
+        {
+            width: 70px;
+        }
+        .widefield
+        {
+            width: 90%;
+        }
+    }
+}
+
+.graphoptions
+{
+    display: flex;
+    flex-direction: column;
+    .label
+    {
+        font-weight: bold;
+    }
+    .row
+    {
+        margin: 5px;
+    }
+}
+
+table.datatable
+{
+    width: 80%;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+    td
+    {
+        padding: 3px;
+    }
+    th
+    {
+        @extend td;
+        font-weight: bold;
+    }
+    tbody
+    {
+        tr
+        {
+            td
+            {
+                border-bottom: solid 1px rgb(87, 87, 87);
+            }
+            &.odd
+            {
+                background-color: clr(5);
+                td:first-child
+                {
+                    background-color: clrdark(5);
+                }
+            }
+            &.even td:first-child
+            {
+                background-color: clrdark(3);
+            }
+            &:hover
+            {
+                background-color: #dbdbdb;
+            }
+            &:first-child td
+            {
+                border-top: brdr();
+            }
+            &:last-child td
+            {
+                border-bottom: brdr();
+            }
+        }
+    }
+}
+
+h1
+{
+    text-align: center;
+    font-size: 2rem;
+}
+
+@media (max-width: 680px)
+{
+    table.datatable td
+    {
+        padding: 0;
+    }
+}
+
+@media (max-width: 800px)
+{
+    .tableandoptions
+    {
+        flex-direction: column;
+        align-content: stretch;
+    }
+    .options
+    {
+        flex-direction: row;
+        width: auto;
+    }
+    table.datatable
+    {
+        width: auto;
+    }
+}

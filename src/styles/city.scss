@@ -1,0 +1,30 @@
+h1.header
+{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.img
+{
+    margin: 10px auto;
+    width: 95vw;
+    height: 60vw;
+    img
+    {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.text
+{
+    width: 95vw;
+    margin: 10px auto;
+    font-size: 14pt;
+    p
+    {
+        margin: 10px 0;
+        text-indent: 1.25cm;
+
+    }
+}

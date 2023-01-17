@@ -4,8 +4,17 @@ html
         block title
             title Города России
         - let pathToStyles = '../../styles/';
+        - let pathToImages = '../../images/';
         link(rel="stylesheet", href=require('../styles/main.scss'))
         block stylesheets
     body
+        .menu
+            a.menu-item(href="/")
+                div Главная
+            a.menu-item(href="table")
+                div Таблица
         block content
+        .footer
+            .footer-row Сайт сделал Ярош Егор Геннадьевич
+            a.footer-row(href="https://github.com/ploschka/Russian-cities") GitHub
     
