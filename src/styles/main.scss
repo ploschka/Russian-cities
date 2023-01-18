@@ -2,6 +2,7 @@
 {
     margin: 0;
     padding: 0;
+    color: black;
     font:
     {
         size: 14pt;
@@ -12,7 +13,6 @@
         align: left;
         decoration: none;
     }
-    color: black;
 }
 
 ul
@@ -24,20 +24,20 @@ ul
 {
     display: flex;
     justify-content: center;
-    background-color: navy;
     padding: 5px;
     &-item
     {
         display: flex;
-        width: 140px;
-        height: 40px;
+        width: 120px;
+        height: 50px;
         color:black;
-        background-color: paleturquoise;
+        background-color: white;
         margin: 3px;
         padding: 3px;
         align-items: center;
         justify-content: center;
-        border-radius: 10px;
+        border-radius: 100px;
+        transition: 0.2s;
         div
         {
             text-align: center;
@@ -45,8 +45,11 @@ ul
 
         &:hover, &.active
         {
-            background-color: #67E46F;
-            text-decoration: underline;
+            background-color: navy;
+            div
+            {
+                color: white;
+            }
         }
     }
 }
