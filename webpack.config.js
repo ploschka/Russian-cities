@@ -1,5 +1,6 @@
 const Encore = require('@symfony/webpack-encore')
 const PugPlugin = require('pug-plugin');
+const path = require('path');
 
 if (!Encore.isRuntimeEnvironmentConfigured())
 {
@@ -11,6 +12,11 @@ Encore
     .setPublicPath('/build/')
     .addEntry('index', './src/templates/pages/index.pug')
     .addEntry('table', './src/templates/pages/table.pug')
+    .addAliases({
+        Images: path.join(__dirname, './src/images'),
+        Styles: path.join(__dirname, './src/styles'),
+        Scripts: path.join(__dirname, './src/script')
+    })
 
     .addEntry('chelyabinsk', './src/templates/pages/cities/chelyabinsk.pug')
     .addEntry('ekaterinburg', './src/templates/pages/cities/ekaterinburg.pug')
@@ -36,7 +42,16 @@ Encore
         config.corejs = 3;
     })
     .enableSingleRuntimeChunk()
-    .addPlugin(new PugPlugin())
+    .addPlugin(new PugPlugin({
+        js: {
+            // output filename of extracted JS file from source script
+            filename: 'assets/js/[name].[contenthash:8].js',
+          },
+        css: {
+        // output filename of extracted CSS file from source style
+            filename: 'assets/css/[name].[contenthash:8].css'
+        }
+    }))
     .addLoader({test: /\.pug/, loader: PugPlugin.loader})
     .addLoader({test: /\.(css|sass|scss)$/, use: ['css-loader', 'sass-loader']})
 ;

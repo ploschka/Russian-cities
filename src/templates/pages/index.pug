@@ -1,7 +1,7 @@
 extends ../base.pug 
 
 block stylesheets
-    link(rel="stylesheet", href=require(pathToStyles + 'index.scss'))
+    link(rel="stylesheet", href=require('Styles/index.scss'))
 block content
     -
         let array = [
@@ -25,5 +25,5 @@ block content
         each val in array
             a.city-card(href= val.href)
                 .img
-                    img(src=require(pathToImages + val.img), title=val.title)
+                    img(src=require(`Images/${val.img}`), title=val.title)
                 .title= val.title

@@ -4,27 +4,11 @@ block title
     title Таблица
 
 block stylesheets
-    link(rel="stylesheet", href=require(pathToStyles + 'table.scss'))
+    link(rel="stylesheet", href=require('Styles/table.scss'))
 block content
+    script(src=require('Scripts/table.js'))
     h1 Список городов
     -
-        let array = [
-            {name: "Москва",            subject: "Москва",                  year: "1147",   count: "13010112",  density: "5079,1"},
-            {name: "Санкт-Петербург",   subject: "Санкт-Петербург",         year: "1703",   count: "5601911",   density: "3992,81"},
-            {name: "Саратов",           subject: "Саратовская область",     year: "1590",   count: "901361",    density: "1074,84"},
-            {name: "Хабаровск",         subject: "Хабаровский край",        year: "1858",   count: "617441",    density: "1599,59"},
-            {name: "Сызрань",           subject: "Самарская область",       year: "1683",   count: "165725",    density: "1416,45"},
-            {name: "Челябинск",         subject: "Челябинская область",     year: "1736",   count: "1189525",   density: "2371,6"},
-            {name: "Новосибирск",       subject: "Новосибирская область",   year: "1893",   count: "1633595",   density: "3230,87"},
-            {name: "Екатеринбург",      subject: "Свердловская область",    year: "1723",   count: "1544376",   density: "1389,2"},
-            {name: "Казань",            subject: "Республика Татарстан",    year: "1005",   count: "1308660",   density: "2221,89"},
-            {name: "Нижний Новгород",   subject: "Нижегородская область",   year: "1221",   count: "1249861",   density: "3043,39"},
-            {name: "Ростов-на-Дону",    subject: "Ростовская область",      year: "1749",   count: "1142162",   density: "3277,37"},
-            {name: "Воронеж",           subject: "Воронежская область",     year: "1586",   count: "1057681",   density: "1767,84"},
-            {name: "Сочи",              subject: "Краснодарский край",      year: "1838",   count: "466078",    density: "2636,64"},
-            {name: "Симферополь",       subject: "Республика Крым",         year: "1784",   count: "340540",    density: "3170,47"},
-        ];
-
         let options = [
             "Нет",
             "Название",
@@ -32,6 +16,15 @@ block content
             "Год основания",
             "Население",
             "Плотность",
+        ];
+
+        let option_names = [
+            "",
+            "name",
+            "subject",
+            "year",
+            "count",
+            "density"
         ];
     
     .tableandoptions
@@ -62,35 +55,39 @@ block content
                 form
                     ul
                         li.element Название: 
-                            input.widefield(type="text")
+                            input.widefield.search-option(type="text" opt="name")
                         li.element Субъект Федерации: 
-                            input.widefield(type="text")
-                        li.element Год основания: 
-                            input.shortfield(type="number")
+                            input.widefield.search-option(type="text" opt="subject")
+                        li.element Год основания
+                            br
+                            | от: 
+                            input.shortfield.search-option(type="number" opt="year_from")
+                            | до:
+                            input.shortfield.search-option(type="number" opt="year_to")
                         li.element Население
                             br
                             | от: 
-                            input.shortfield(type="number")
+                            input.shortfield.search-option(type="number" opt="count_from")
                             | до:
-                            input.shortfield(type="number")
+                            input.shortfield.search-option(type="number" opt="count_to")
                         li.element Плотность
                             br
                             | от: 
-                            input.shortfield(type="number")
+                            input.shortfield.search-option(type="number" opt="density_from")
                             | до:
-                            input.shortfield(type="number")
+                            input.shortfield.search-option(type="number" opt="density_to")
             .option 
                 .text Сортировка
                 ul
                     - levels = ["first", "second", "third"];
                     each level, index in ["Первый", "Второй", "Третий"]
                         li.element #{level} уровень
-                            select.widefield
+                            select.widefield.sort-option.sort-select(opt=levels[index])
                                 each opt, index in options
-                                    option(value=index)= opt
+                                    option(value=option_names[index])= opt
                             br
-                            input(type="checkbox", id=levels[index])
-                            label(for=levels[index])  По убыванию
+                            input.sort-option.sort-checkbox(type="checkbox", id=`reverse_${levels[index]}` opt=`${levels[index]}_rev`)
+                            label(for=`reverse_${levels[index]}`)  По убыванию
 
         table.datatable
             thead
@@ -100,17 +97,4 @@ block content
                     th Год основания
                     th Население (чел.)
                     th Плотность (чел./км²)
-            tbody
-                - let cls = "";
-                each val, index in array
-                    if index % 2 == 0
-                        - cls = "odd";
-                    else
-                        - cls = "even";
-
-                    tr(class=cls)
-                        td= val.name
-                        td= val.subject
-                        td= val.year
-                        td= val.count
-                        td= val.density          
+            tbody#datatable-body   

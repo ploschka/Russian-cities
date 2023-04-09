@@ -17,6 +17,7 @@
 {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .options
@@ -39,7 +40,7 @@
         }
         .shortfield
         {
-            width: 70px;
+            width: 30%;
         }
         .widefield
         {
@@ -70,7 +71,9 @@ table.datatable
     border-spacing: 0;
     td
     {
-        padding: 3px;
+        padding: 10px;
+        height: max-content;
+        width: 20%;
     }
     th
     {
