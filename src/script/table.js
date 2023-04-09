@@ -137,7 +137,7 @@ $(() => {
 
     const hide_options = (index, wasopt, newopt) => {
         sort_select.children(`[value="${wasopt}"]`).filter(i => i !== index).show()
-        $(`.sort-select [value="${newopt}"]`).filter(i => i !== index).hide();
+        sort_select.children(`[value="${newopt}"]`).filter(i => i !== index).hide();
     };
 
     rerender(table);
