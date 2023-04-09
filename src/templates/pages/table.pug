@@ -8,24 +8,6 @@ block stylesheets
 block content
     script(src=require('Scripts/table.js'))
     h1 Список городов
-    -
-        let options = [
-            "Нет",
-            "Название",
-            "Субъект Федерации",
-            "Год основания",
-            "Население",
-            "Плотность",
-        ];
-
-        let option_names = [
-            "",
-            "name",
-            "subject",
-            "year",
-            "count",
-            "density"
-        ];
     
     .tableandoptions
         .options
@@ -82,11 +64,9 @@ block content
                     - levels = ["first", "second", "third"];
                     each level, index in ["Первый", "Второй", "Третий"]
                         li.element #{level} уровень
-                            select.widefield.sort-option.sort-select(opt=levels[index])
-                                each opt, index in options
-                                    option(value=option_names[index])= opt
+                            select.widefield.sort-option.sort-select(lvl=levels[index])
                             br
-                            input.sort-option.sort-checkbox(type="checkbox", id=`reverse_${levels[index]}` opt=`${levels[index]}_rev`)
+                            input.sort-option.sort-checkbox(type="checkbox", id=`reverse_${levels[index]}` lvl=`${levels[index]}_rev`)
                             label(for=`reverse_${levels[index]}`)  По убыванию
 
         table.datatable

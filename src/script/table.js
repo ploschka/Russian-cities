@@ -17,6 +17,26 @@ const table = [
     { name: "Симферополь", subject: "Республика Крым", year: 1784, count: 340540, density: 3170.47 },
 ];
 
+const _ = console.log;
+
+const options = [
+    "Нет",
+    "Название",
+    "Субъект Федерации",
+    "Год основания",
+    "Население",
+    "Плотность",
+];
+
+const option_names = [
+    "",
+    "name",
+    "subject",
+    "year",
+    "count",
+    "density"
+];
+
 const filter = {
     name: null,
     subject: null,
@@ -44,6 +64,8 @@ $(() => {
     const sort_options = $(`.sort-option`);
 
     const datatable = $(`#datatable-body`);
+    const sort_select = $(`.sort-select`);
+
     const rerender = arr => {
         datatable.html(``);
         arr = arr.filter(e => {
@@ -73,7 +95,7 @@ $(() => {
                     }
                 });
             }
-            
+
             if (sort.second !== null) {
                 arr.sort((e1, e2) => {
                     if (sort.second_rev) {
@@ -83,7 +105,7 @@ $(() => {
                     }
                 });
             }
-            
+
             if (sort.third !== null) {
                 arr.sort((e1, e2) => {
                     if (sort.third_rev) {
@@ -107,18 +129,33 @@ $(() => {
             });
         }
     }
+    sort_select.each(i => {
+        options.forEach((e, j) => {
+            $(sort_select[i]).append(`<option value="${option_names[j]}">${e}</option>`);
+        });
+    });
+
+    const hide_options = (index, wasopt, newopt) => {
+        sort_select.children(`[value="${wasopt}"]`).filter(i => i !== index).show()
+        $(`.sort-select [value="${newopt}"]`).filter(i => i !== index).hide();
+    };
 
     rerender(table);
+
     filter_options.on('input', e => {
-        filter[e.target.attributes['opt'].value] = (e.target.value === '') ? null : e.target.value;
+        filter[e.target.attributes['lvl'].value] = (e.target.value === '') ? null : e.target.value;
         rerender(table);
     })
-    sort_options.filter('.sort-select').on('input', e => {
-        sort[e.target.attributes["opt"].value] = (e.target.value === '') ? null : e.target.value;
+    sort_select.on('input', e => {
+        let level = e.target.attributes["lvl"].value;
+        const index = (level === "first")? 0 : (level === "second") ? 1 : (level === "third") ? 2 : -1;
+        const value = (e.target.value === '') ? null : e.target.value;
+        hide_options(index, sort[level], value);
+        sort[level] = value;
         rerender(table);
     });
     sort_options.filter('.sort-checkbox').on('change', e => {
-        sort[e.target.attributes["opt"].value] = e.target.checked;
+        sort[e.target.attributes["lvl"].value] = e.target.checked;
         rerender(table);
     });
 });

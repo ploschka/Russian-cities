@@ -1,6 +1,6 @@
 {
   "name": "russian-cities",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Сайт о городах России для дисциплины \"Сетевые и интернет технологии\"",
   "main": "index.js",
   "repository": "git@github.com:ploschka/Russian-cities.git",
