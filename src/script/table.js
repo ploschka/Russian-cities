@@ -143,7 +143,7 @@ $(() => {
     rerender(table);
 
     filter_options.on('input', e => {
-        filter[e.target.attributes['lvl'].value] = (e.target.value === '') ? null : e.target.value;
+        filter[e.target.attributes['opt'].value] = (e.target.value === '') ? null : e.target.value;
         rerender(table);
     })
     sort_select.on('input', e => {
