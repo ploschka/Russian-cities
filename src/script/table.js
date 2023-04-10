@@ -129,10 +129,8 @@ $(() => {
             });
         }
     }
-    sort_select.each(i => {
-        options.forEach((e, j) => {
-            $(sort_select[i]).append(`<option value="${option_names[j]}">${e}</option>`);
-        });
+    options.forEach((e, j) => {
+        sort_select.append(`<option value="${option_names[j]}">${e}</option>`);
     });
 
     const hide_options = (index, wasopt, newopt) => {
