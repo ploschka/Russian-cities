@@ -15,6 +15,7 @@ const table = [
     { name: "Воронеж", subject: "Воронежская область", year: 1586, count: 1057681, density: 1767.84 },
     { name: "Сочи", subject: "Краснодарский край", year: 1838, count: 466078, density: 2636.64 },
     { name: "Симферополь", subject: "Республика Крым", year: 1784, count: 340540, density: 3170.47 },
+    { name: "FFFFFF", subject: "Самарская область", year: 1683, count: 165725, density: 1416.45 },
 ];
 
 const _ = console.log;
@@ -86,16 +87,16 @@ $(() => {
                 </tr>`
             );
         } else {
-            if (sort.first !== null) {
+            if (sort.third !== null) {
                 arr.sort((e1, e2) => {
-                    if (sort.first_rev) {
-                        return e1[sort.first] < e2[sort.first];
+                    if (sort.third_rev) {
+                        return e1[sort.third] < e2[sort.third];
                     } else {
-                        return e1[sort.first] > e2[sort.first];
+                        return e1[sort.third] > e2[sort.third];
                     }
                 });
             }
-
+            
             if (sort.second !== null) {
                 arr.sort((e1, e2) => {
                     if (sort.second_rev) {
@@ -106,12 +107,12 @@ $(() => {
                 });
             }
 
-            if (sort.third !== null) {
+            if (sort.first !== null) {
                 arr.sort((e1, e2) => {
-                    if (sort.third_rev) {
-                        return e1[sort.third] < e2[sort.third];
+                    if (sort.first_rev) {
+                        return e1[sort.first] < e2[sort.first];
                     } else {
-                        return e1[sort.third] > e2[sort.third];
+                        return e1[sort.first] > e2[sort.first];
                     }
                 });
             }
@@ -146,7 +147,7 @@ $(() => {
     })
     sort_select.on('input', e => {
         let level = e.target.attributes["lvl"].value;
-        const index = (level === "first")? 0 : (level === "second") ? 1 : (level === "third") ? 2 : -1;
+        const index = (level === "first") ? 0 : (level === "second") ? 1 : (level === "third") ? 2 : -1;
         const value = (e.target.value === '') ? null : e.target.value;
         hide_options(index, sort[level], value);
         sort[level] = value;
