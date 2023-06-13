@@ -13,25 +13,40 @@ block content
         .options
             .option
                 .text График
-                form
+                form#form
                     .graphoptions
-                        .label Значение по оси X
+                        .label Тип диаграммы
                         .row
-                            input#subject(type="radio", name="radio")
+                            input.T#dot(type="radio", name="Xradio", value="dot", checked=true)
+                            label(for="dot") Точечная
+                        .row
+                            input.T#column(type="radio", name="Xradio", value="column")
+                            label(for="column") Столбчатая
+                        .label Значение по оси X                        
+                        .row
+                            input.X#subject(type="radio", name="radio", value="subject", checked=true)
                             label(for="subject") Субъект Федерации
 
                         .row
-                            input#year(type="radio", name="radio")
+                            input.X#year(type="radio", name="radio", value="year")
                             label(for="year") Год основания
-                        .label Результат
+                        .label Значение по оси Y
                         .row
-                            input#population(type="checkbox")
+                            input.Y#population(type="radio", name="Yradio", value="population", checked=true)
                             label(for="population") Население
 
                         .row
-                            input#density(type="checkbox")
-                            label(for="density") Плотность                                
-                    input(type="submit", value="Построить")
+                            input.Y#density(type="radio", name="Yradio", value="density")
+                            label(for="density") Плотность
+                        .label
+                        .row
+                            input.MM#max(type="checkbox", checked=true)
+                            label(for="max") Максимальное значение   
+                        .row
+                            input.MM#min(type="checkbox")
+                            label(for="min") Минимальное значение
+
+                    input#draw(type="button", value="Построить", onclick="drawGraph(this.form)")
             .option
                 .text Поиск
                 form
@@ -69,12 +84,16 @@ block content
                             input.sort-option.sort-checkbox(type="checkbox", id=`reverse_${levels[index]}` lvl=`${levels[index]}_rev`)
                             label(for=`reverse_${levels[index]}`)  По убыванию
 
-        table.datatable
-            thead
-                tr
-                    th Название
-                    th Субъект Федерации
-                    th Год основания
-                    th Население (чел.)
-                    th Плотность (чел./км²)
-            tbody#datatable-body   
+        .tableandgraph
+            table.datatable
+                thead
+                    tr
+                        th Название
+                        th Субъект Федерации
+                        th Год основания
+                        th Население (чел.)
+                        th Плотность (чел./км²)
+                tbody#datatable-body
+            svg#graph
+    script(src="http://d3js.org/d3.v7.min.js")
+    script(src=require('Scripts/graph.js'))
