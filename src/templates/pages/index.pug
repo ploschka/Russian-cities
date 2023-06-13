@@ -23,7 +23,7 @@ block content
     h1 Города России
     .gallery
         each val in array
-            a.city-card(href= val.href)
+            a.city-card(href=`${val.href}.html`)
                 .img
                     img(src=require(`Images/${val.img}`), title=val.title)
                 .title= val.title

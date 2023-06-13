@@ -9,13 +9,14 @@ if (!Encore.isRuntimeEnvironmentConfigured())
 
 Encore
     .setOutputPath('public/build/')
-    .setPublicPath('/build/')
+    .setPublicPath('/')
     .addEntry('index', './src/templates/pages/index.pug')
     .addEntry('table', './src/templates/pages/table.pug')
     .addAliases({
         Images: path.join(__dirname, './src/images'),
         Styles: path.join(__dirname, './src/styles'),
-        Scripts: path.join(__dirname, './src/script')
+        Scripts: path.join(__dirname, './src/script'),
+        Templates: path.join(__dirname, './src/templates')
     })
 
     .addEntry('chelyabinsk', './src/templates/pages/cities/chelyabinsk.pug')

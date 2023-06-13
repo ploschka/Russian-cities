@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  # Nginx container
+  webserver:
+    image: nginx-russian-cities
+    build: ./nginx
+    container_name: webserver
+    volumes:
+      - ./public/build:/usr/share/nginx/html:ro
+    ports:
+      - 80:80
