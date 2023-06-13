@@ -1,7 +1,8 @@
 extends ../base.pug 
 
 block stylesheets
-    link(rel="stylesheet", href=require('Styles/index.scss'))
+    link(rel="stylesheet", href=require('Styles/index.scss'))    
+    link(rel="stylesheet", href=require('Styles/grid-gallery.min.scss'))
 block content
     -
         let array = [
@@ -27,3 +28,9 @@ block content
                 .img
                     img(src=require(`Images/${val.img}`), title=val.title)
                 .title= val.title
+    .gg-container 
+        .gg-box
+            each val in array
+                img(src=require(`Images/${val.img}`))
+    script(src=require("Scripts/grid-gallery.min.js"))
+    
